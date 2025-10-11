@@ -150,7 +150,7 @@ We explored three potential research approaches:
 
 ---
 
-## 🏁 Summary
+##  Summary
 
 This research demonstrates that **feature engineering from dynamic behavior data** can significantly improve malware family classification accuracy.  
 By leveraging the **BODMAS dataset** and advanced ML models such as **LightGBM and ResNet1D**, we bridge the gap between raw sandbox analysis and practical AI-driven malware detection.
