@@ -1,4 +1,4 @@
-# 🧠 AI-Assisted Dynamic Malware Family Classification using BODMAS Dataset
+# AI-Assisted Dynamic Malware Family Classification using BODMAS Dataset
 
 ##  Overview
 
@@ -93,7 +93,7 @@ We explored three potential research approaches:
 
 ---
 
-## 🧠 Evaluation Metrics
+##  Evaluation Metrics
 
 | Metric | Description |
 |--------|--------------|
