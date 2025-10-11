@@ -1,6 +1,6 @@
 # 🧠 AI-Assisted Dynamic Malware Family Classification using BODMAS Dataset
 
-## 📘 Overview
+##  Overview
 
 This project aims to develop an AI-assisted malware classification model capable of identifying whether a given executable is **benign or malicious**, and if malicious, classifying it into its respective **malware family** (e.g., Trojan, Ransomware, Worm, etc.).
 
@@ -9,7 +9,7 @@ Our implementation explores multiple machine learning models and introduces **no
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 
 - Automate malware classification based on dynamic behavior.
 - Evaluate multiple machine learning models: **Random Forest, LightGBM, MLP, and ResNet1D**.
@@ -35,7 +35,7 @@ Each sample in the dataset includes pre-extracted behavioral statistics such as:
 
 ---
 
-## ⚙️ Models Implemented
+##  Models Implemented
 
 | Model | Description | Use Case |
 |-------|--------------|----------|
@@ -46,7 +46,7 @@ Each sample in the dataset includes pre-extracted behavioral statistics such as:
 
 ---
 
-## 💡 Project Approaches
+##  Project Approaches
 
 We explored three potential research approaches:
 
@@ -66,7 +66,7 @@ We explored three potential research approaches:
 
 ---
 
-## 🧪 Implementation Workflow
+##  Implementation Workflow
 
 1. **Data Loading and Preprocessing**
    - Load `bodmas.npz` and `metadata.csv`
@@ -93,37 +93,6 @@ We explored three potential research approaches:
 
 ---
 
-## 🧩 Folder Structure
-
-```
-├── data/
-│   ├── bodmas.npz
-│   ├── bodmas_metadata.csv
-│
-├── notebooks/
-│   ├── 01_preprocessing.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   ├── 03_model_training.ipynb
-│   ├── 04_evaluation.ipynb
-│
-├── models/
-│   ├── random_forest.pkl
-│   ├── lightgbm_model.txt
-│   ├── mlp_model.h5
-│
-├── results/
-│   ├── confusion_matrix.png
-│   ├── feature_importance.png
-│
-├── app/
-│   ├── streamlit_app.py
-│
-├── README.md
-└── requirements.txt
-```
-
----
-
 ## 🧠 Evaluation Metrics
 
 | Metric | Description |
@@ -136,7 +105,7 @@ We explored three potential research approaches:
 
 ---
 
-## 🔍 Expected Results
+## Expected Results
 
 - Improved accuracy and F1-score after feature engineering.  
 - Better detection of specific malware families (e.g., Trojans, Worms).  
@@ -145,7 +114,7 @@ We explored three potential research approaches:
 
 ---
 
-## 📚 Tools & Libraries
+##  Tools & Libraries
 
 - Python 3.10+  
 - NumPy, Pandas, Scikit-learn  
@@ -155,7 +124,7 @@ We explored three potential research approaches:
 
 ---
 
-## 🧑‍🤝‍🧑 Team Roles
+##  Team Roles
 
 | Member | Responsibility |
 |---------|----------------|
@@ -165,7 +134,7 @@ We explored three potential research approaches:
 
 ---
 
-## 🧭 Future Work
+##  Future Work
 
 - Integrate raw Cuckoo sandbox data for more granular API-level features.  
 - Implement real-time malware classification via REST API.  
@@ -176,18 +145,8 @@ We explored three potential research approaches:
 
 ## 📝 Citation
 
-If you use this work or dataset, please cite:
-
 > WhyisYoung, *BODMAS: A Behavioral Dataset for Malware Analysis*, GitHub.io (2022).  
 > [https://whyisyoung.github.io/BODMAS/](https://whyisyoung.github.io/BODMAS/)
-
----
-
-## 🛡️ Disclaimer
-
-This project uses publicly available, preprocessed datasets.  
-No live malware execution was performed during this research.  
-All experiments were conducted on safe and controlled data sources.
 
 ---
 
