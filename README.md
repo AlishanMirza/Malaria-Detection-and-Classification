@@ -128,9 +128,9 @@ We explored three potential research approaches:
 
 | Member | Responsibility |
 |---------|----------------|
-| Member A | Data preprocessing and feature engineering |
-| Member B | Model training and tuning |
-| Member C | Evaluation, visualization, and final report preparation |
+| Member A |  |
+| Member B |  |
+| Member C |  |
 
 ---
 
