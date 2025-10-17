@@ -1,28 +1,51 @@
-# Core data processing
-numpy>=1.24
-pandas>=2.0
-scipy>=1.11
+# ================================================================
+# Malware Detection & Classification—Environment Dependencies
+# ---------------------------------------------------------------
+# Compatible with macOS (Apple Silicon / Intel), Linux, and Windows
+# Python version: 3.10–3.11
+# ================================================================
 
-# Machine learning
-scikit-learn>=1.3
-lightgbm>=4.3
-imbalanced-learn>=1.12
-joblib>=1.3
+# --- Core numerical and data libraries ---
+numpy>=1.24,<2.0
+pandas>=2.1,<3.0
+scipy>=1.11,<2.0
 
-# Deep learning
-tensorflow>=2.15
-torch>=2.1
+# --- Machine Learning & Imbalanced Data ---
+scikit-learn>=1.3,<2.0
+lightgbm>=4.3,<5.0
+imbalanced-learn>=0.12,<0.13
+joblib>=1.3,<2.0
 
-# Visualization
-matplotlib>=3.8
-seaborn>=0.14
-tqdm>=4.66
-plotly>=6.0
+# --- Deep Learning (optional) ---
+# tensorflow-macos for Apple Silicon (M1/M2); tensorflow for others
+tensorflow>=2.15,<2.18; sys_platform != "darwin" or platform_machine != "arm64"
+tensorflow-macos>=2.15,<2.18; sys_platform == "darwin" and platform_machine == "arm64"
 
-# Jupyter
-notebook>=7.3
-ipykernel>=7.30
+# pytorch has platform-specific wheels; install manually if needed
+torch>=2.1,<2.4
+torchvision>=0.16,<0.20
 
-# Deployment / apps
-streamlit>=1.26
+# --- Visualization ---
+matplotlib>=3.8,<4.0
+seaborn>=0.13,<0.14
+plotly>=5.20,<6.0
+tqdm>=4.66,<5.0
 
+# --- Data I/O & File Formats ---
+pyarrow>=15.0,<18.0         # Parquet support
+fastparquet>=2024.1.0,<2025.0.0
+openpyxl>=3.1,<4.0           # Excel read/write
+pillow>=10.0,<12.0           # Image handling if needed
+
+# --- Jupyter & Development ---
+jupyterlab>=4.1,<5.0
+ipykernel>=6.29,<7.0
+notebook>=7.1,<8.0
+
+# --- Model Deployment / App Interface ---
+streamlit>=1.26,<2.0
+
+# --- Utilities ---
+psutil>=5.9,<6.0
+pathlib>=1.0
+pyyaml>=6.0,<7.0
