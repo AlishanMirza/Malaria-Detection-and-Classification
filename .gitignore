@@ -1,1 +1,34 @@
-.
+# OS / IDE
+.DS_Store
+.ipynb_checkpoints/
+__pycache__/
+*.log
+
+# Python
+*.pyc
+*.pyo
+*.pyd
+*.egg-info
+.env
+venv/
+.mypy_cache/
+__pycache__/
+
+# Datasets
+BODMAS/*.npz
+BODMAS/*.csv
+
+# Artifacts / Models
+artifacts/
+models/
+outputs/
+*.pkl
+*.joblib
+*.parquet
+*.h5
+*.pt
+*.onnx
+*.json
+
+# Jupyter
+.ipynb_checkpoints/
