@@ -86,8 +86,8 @@ Trains LightGBM classifier and saves model artifacts.
 ### **2️⃣ Launch the API**
 ```bash
 python app.py
+python test.py ( Test 50 random samples )
 ```
-**Endpoint:** `POST http://127.0.0.1:5000/predict`
 
 **Sample Request:**
 ```json
