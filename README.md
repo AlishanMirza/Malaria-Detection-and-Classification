@@ -1,4 +1,4 @@
-# 🧠 AI-Assisted Dynamic Malware Family Classification using BODMAS Dataset
+# AI-Assisted Dynamic Malware Family Classification using BODMAS Dataset
 
 ## **Research Objectives**
 
