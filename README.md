@@ -4,8 +4,8 @@
 
 This project advances malware analysis by developing an **AI-powered malware family classification system** using the **BODMAS dataset**.
 
-### 🔍 Research Gap
-Previous baseline research only performed **binary classification** — distinguishing between *malicious* and *benign* samples.  
+### Research Gap
+Previous baseline research only performed **binary classification**  distinguishing between *malicious* and *benign* samples.  
 Our model goes **beyond binary classification** by accurately identifying the **specific malware family** (e.g., *Trojan, Worm, Ransomware, Downloader*, etc.).  
 This enhancement fills a significant **gap in behavioral malware analysis research**.
 
