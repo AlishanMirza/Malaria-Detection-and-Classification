@@ -1,156 +1,145 @@
-# AI-Assisted Dynamic Malware Family Classification using BODMAS Dataset
+# 🧠 AI-Assisted Dynamic Malware Family Classification using BODMAS Dataset
 
-##  Overview
+## **Research Objectives**
 
-This project aims to develop an AI-assisted malware classification model capable of identifying whether a given executable is **benign or malicious**, and if malicious, classifying it into its respective **malware family** (e.g., Trojan, Ransomware, Worm, etc.).
+This project advances malware analysis by developing an **AI-powered malware family classification system** using the **BODMAS dataset**.
 
-We build upon the **BODMAS** (Behavioral Dataset for Malware Analysis) dataset, which provides dynamic behavior features extracted from **Cuckoo Sandbox**.  
-Our implementation explores multiple machine learning models and introduces **novel feature engineering** techniques to improve classification performance.
+### 🔍 Research Gap
+Previous baseline research only performed **binary classification** — distinguishing between *malicious* and *benign* samples.  
+Our model goes **beyond binary classification** by accurately identifying the **specific malware family** (e.g., *Trojan, Worm, Ransomware, Downloader*, etc.).  
+This enhancement fills a significant **gap in behavioral malware analysis research**.
 
----
-
-##  Objectives
-
-- Automate malware classification based on dynamic behavior.
-- Evaluate multiple machine learning models: **Random Forest, LightGBM, MLP, and ResNet1D**.
-- Extend the BODMAS dataset with **novel dynamic features** (e.g., API success ratios, behavior hashes).
-- Compare results with and without the new features to measure improvement.
-- Provide a reproducible and scalable pipeline for future malware analysis research.
+### Key Goals
+- Perform **multi-class malware family classification** (not just benign vs malware).  
+- Apply **LightGBM with Optuna optimization** for robust training.  
+- Select top features via **SelectKBest** to improve model performance.  
+- Deploy a **Flask-based REST API** for real-time malware prediction.
 
 ---
 
-## 📂 Dataset
+## **Methodology**
 
-**Source:** [BODMAS Dataset](https://whyisyoung.github.io/BODMAS/)  
-**Type:** Dynamic malware behavior dataset  
-**Features extracted from:** Cuckoo Sandbox reports  
-**Labels:** Malware families and benign samples  
-**Data format:** `.npz` (NumPy compressed) and `.csv` metadata files
+### 1️⃣ Data Preparation
+- Load **BODMAS dataset** (`bodmas.npz` and `bodmas_metadata.csv`).
+- Remove benign samples and filter families with less than 5 samples.
+- Encode malware family labels using **LabelEncoder**.
 
-Each sample in the dataset includes pre-extracted behavioral statistics such as:
-- API call frequencies
-- File and registry operations
-- Network activity indicators
-- Execution statistics and return patterns
+### 2️⃣ Data Splitting & Scaling
+- Split dataset into **Train (70%)**, **Validation (15%)**, and **Test (15%)**.
+- Normalize all features using **StandardScaler**.
 
----
+### 3️⃣ Feature Selection
+- Select top **200 features** with `SelectKBest(f_classif)` for better model generalization.
 
-##  Models Implemented
+### 4️⃣ Model Training (LightGBM)
+- Train **LightGBM Classifier** with **Optuna hyperparameter tuning**.
+- Optimize parameters like `num_leaves`, `max_depth`, `learning_rate`, etc.
+- Evaluate model with **macro F1-score** and **accuracy**.
 
-| Model | Description | Use Case |
-|-------|--------------|----------|
-| **Random Forest** | Ensemble of decision trees; robust to noise and feature imbalance | Baseline model |
-| **LightGBM** | Gradient boosting with high speed and accuracy on tabular data | Optimized performance |
-| **MLP (Multi-Layer Perceptron)** | Neural network capable of non-linear classification | Deep learning baseline |
-| **ResNet1D** | 1D convolutional residual network suitable for sequential behavior data | Advanced deep learning model |
+### 5️⃣ Model Evaluation
+- Compute **classification report**, **F1-score**, and **confusion matrix**.
+- Visualize top-performing malware families.
 
----
-
-##  Project Approaches
-
-We explored three potential research approaches:
-
-1. **Baseline:**  
-   Train and evaluate the models directly on the original BODMAS dataset.
-
-2. **Dynamic Analysis Extension:**  
-   Perform independent sandbox testing (e.g., using Cuckoo Sandbox) to extract new behavioral features.
-
-3. **Feature Engineering (Chosen Approach):**  
-   Engineer new behavioral features from the existing dataset, such as:
-   - `api_success_ratio` → Success/failure ratio of API calls  
-   - `network_file_ratio` → Relation between network and file operations  
-   - `behavior_hash` → Hashed representation of behavioral vectors  
-
-   These features are merged into the existing feature set to form a **novel feature vector** that enhances classification accuracy.
+### 6️⃣ Model Export
+All trained artifacts are saved as:
+- `final_model.pkl`
+- `scaler.pkl`
+- `selector.pkl`
+- `label_encoder.pkl`
+- `label_to_family.pkl`
 
 ---
 
-##  Implementation Workflow
+## **Expected Contributions**
 
-1. **Data Loading and Preprocessing**
-   - Load `bodmas.npz` and `metadata.csv`
-   - Normalize and clean features
-   - Encode malware families numerically
-
-2. **Feature Engineering**
-   - Create new dynamic behavior features (`api_success_ratio`, `behavior_hash`, etc.)
-   - Merge with original features
-
-3. **Model Training and Evaluation**
-   - Train Random Forest, LightGBM, MLP, and ResNet1D
-   - Evaluate with accuracy, precision, recall, F1-score
-   - Plot confusion matrices and ROC curves
-
-4. **Result Comparison**
-   - Compare baseline vs. feature-extended models
-   - Analyze which features most improved classification accuracy
-
-5. **Documentation and Deployment**
-   - Save trained models (`.pkl` or `.h5`)
-   - Provide Jupyter notebook and code scripts
-   - Document findings in research report
+- Bridges the research gap from **binary** to **multi-class malware classification**.  
+- Demonstrates that **behavioral features** can differentiate malware families.  
+- Provides a **ready-to-deploy Flask API** for real-time malware family prediction.  
+- Enables security researchers to conduct **fine-grained malware family studies**.
 
 ---
 
-##  Evaluation Metrics
+## **Dataset**
 
-| Metric | Description |
-|--------|--------------|
-| **Accuracy** | Overall correctness of classification |
-| **Precision** | Correct malware detections vs. all detections |
-| **Recall** | Ability to detect all malware samples |
-| **F1-score** | Harmonic mean of precision and recall |
-| **Confusion Matrix** | Family-wise classification performance |
+**Dataset:** BODMAS – Behavioral Dataset for Malware Analysis  
+**Source:** [https://whyisyoung.github.io/BODMAS/](https://whyisyoung.github.io/BODMAS/)  
+**Type:** Dynamic behavior data collected using **Cuckoo Sandbox**
 
----
+**Files:**
+- `bodmas.npz` → Numerical feature vectors
+- `bodmas_metadata.csv` → Family names and metadata
 
-## Expected Results
-
-- Improved accuracy and F1-score after feature engineering.  
-- Better detection of specific malware families (e.g., Trojans, Worms).  
-- Evidence that engineered features improve model generalization.  
-- Research paper discussing methodology, results, and future improvements.
+Filtering criteria:
+- Only malware samples retained (benign removed)
+- Families with <5 samples excluded
 
 ---
 
-##  Tools & Libraries
+## **Running Application**
 
-- Python 3.10+  
-- NumPy, Pandas, Scikit-learn  
-- LightGBM, TensorFlow/PyTorch  
-- Matplotlib, Seaborn  
-- Streamlit / FastAPI (for deployment)
+### **1️⃣ Train the Model**
+```bash
+python final.py
+```
+Trains LightGBM classifier and saves model artifacts.
+
+### **2️⃣ Launch the API**
+```bash
+python app.py
+```
+**Endpoint:** `POST http://127.0.0.1:5000/predict`
+
+**Sample Request:**
+```json
+{"features": [0.123, 1.456, 0.789, ...]}
+```
+
+**Sample Response:**
+```json
+{
+  "prediction": {
+    "family_name": "Trojan",
+    "encoded_label": 3,
+    "confidence": 0.92
+  }
+}
+```
+
+### **3️⃣ Test the API**
+```bash
+python test.py
+```
 
 ---
 
-##  Team Roles
-
-| Member | Responsibility |
-|---------|----------------|
-| Member A |  |
-| Member B |  |
-| Member C |  |
+## **Folder Structure**
+```
+├── BODMAS/
+│   ├── bodmas.npz
+│   ├── bodmas_metadata.csv
+│
+├── models/
+│   ├── final_model.pkl
+│   ├── scaler.pkl
+│   ├── selector.pkl
+│   ├── label_encoder.pkl
+│   ├── label_to_family.pkl
+│
+├── app.py
+├── final.py
+├── sample.py
+├── test.py
+└── README.md
+```
 
 ---
 
-##  Future Work
-
-- Integrate raw Cuckoo sandbox data for more granular API-level features.  
-- Implement real-time malware classification via REST API.  
-- Extend analysis to Android or Linux malware datasets.  
-- Use explainable AI (XAI) to interpret classification decisions.
-
----
-
-## 📝 Citation
-
+## **Citation**
 > WhyisYoung, *BODMAS: A Behavioral Dataset for Malware Analysis*, GitHub.io (2022).  
 > [https://whyisyoung.github.io/BODMAS/](https://whyisyoung.github.io/BODMAS/)
 
 ---
 
-##  Summary
-
-This research demonstrates that **feature engineering from dynamic behavior data** can significantly improve malware family classification accuracy.  
-By leveraging the **BODMAS dataset** and advanced ML models such as **LightGBM and ResNet1D**, we bridge the gap between raw sandbox analysis and practical AI-driven malware detection.
+## **Summary**
+This project introduces a **novel malware family classification system** that moves beyond binary detection.  
+By leveraging **behavioral analysis** and **machine learning**, it enables precise identification of malware families—closing a crucial research gap and contributing to stronger AI-based cybersecurity defense systems.
